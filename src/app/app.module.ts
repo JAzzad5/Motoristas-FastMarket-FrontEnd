@@ -11,6 +11,8 @@ import { ContenedorOrdenesEntregadasComponent } from './components/contenedor-or
 import { RegistroComponent } from './components/registro/registro.component';
 import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
