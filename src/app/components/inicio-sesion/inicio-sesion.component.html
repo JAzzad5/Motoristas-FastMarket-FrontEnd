@@ -1,1 +1,25 @@
-<p>inicio-sesion works!</p>
+<div class="contenedor-login">
+
+    <img class="img-login" src="../../../assets/images/login undraw.svg" alt="">
+
+    <form class="formulario" action="">
+        <div class="correo">
+            <p class="form-label">Correo:</p>
+            <input class="form-control" placeholder="usuario@correo.com" type="email" name="" id="">
+        </div>
+        <div class="contraseña">
+            <p class="form-label" >Contraseña:</p>
+            <input class="form-control" placeholder="contraseña" type="password" name="" id="">
+        </div>
+        <button type="button" class="btn btn-success"> Iniciar Session </button>
+        <div class="acciones">
+            <p class="mr-4" [routerLink]="['/registro']" routerLinkActive="router-link-active" >Registrate</p>
+            <p class="ml-4">Olvidé mi contraseña</p>
+        </div>
+    </form>
+    <div class="derechos">
+        <img src="../../../assets/images/LogoFastMarket2.svg" alt="">
+        Todos los derechos reservados. <br>
+        FastMarket, 2021
+    </div>
+</div>
