@@ -1,0 +1,45 @@
+.nav{
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.icono{
+    color: white;
+    margin-right: 20px;
+    font-size: 25px;
+}
+.icono-usuario{
+    margin-left: 30px;
+    margin-right: 50px;
+}
+
+.estado{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.estado p{
+    margin-bottom: 0px!important;
+    margin-right: 7px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bienvenida p{
+    margin-bottom: 0px!important;
+    margin-right: 7px;
+    color: white;
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 30px;
+}

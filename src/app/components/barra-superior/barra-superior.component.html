@@ -1,1 +1,16 @@
-<p>barra-superior works!</p>
+<div class="nav">
+    <fa-icon class="icono icono-usuario" [routerLink]="['/perfil']" routerLinkActive="router-link-active"   [icon]="faUser"></fa-icon>
+    
+    <div class="estado">
+        <p>Estado:</p>
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1"></label>
+        </div>
+    </div>    
+</div>
+<div class="bienvenida">
+    <p>Hola, Enrique Martinez</p>
+    <p>#EMartinez </p>
+    <p>Numero de Placa: MAE1234</p>
+</div>
