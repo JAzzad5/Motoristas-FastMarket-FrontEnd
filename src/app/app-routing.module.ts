@@ -4,12 +4,18 @@ import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.
 import { RegistroComponent } from './components/registro/registro.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ContenedorPrincipalComponent } from './components/contenedor-principal/contenedor-principal.component';
+import { ContenedorOrdenesDisponiblesComponent } from './components/contenedor-ordenes-disponibles/contenedor-ordenes-disponibles.component';
+import { ContenedorOrdenesEntregadasComponent } from './components/contenedor-ordenes-entregadas/contenedor-ordenes-entregadas.component';
+import { ContenedorOrdenesTomadasComponent } from './components/contenedor-ordenes-tomadas/contenedor-ordenes-tomadas.component';
 
 const routes: Routes = [
-  {path:'inicioSesion', component: InicioSesionComponent},
+  {path:'inicio-sesion', component: InicioSesionComponent},
   {path: 'registro', component:RegistroComponent},
   {path: '', component:LandingPageComponent},
   {path: 'inicio', component:ContenedorPrincipalComponent},
+  {path: 'ordenes-disponibles', component:ContenedorOrdenesDisponiblesComponent},
+  {path: 'ordenes-entregadas', component:ContenedorOrdenesEntregadasComponent},
+  {path: 'ordenes-tomadas', component:ContenedorOrdenesTomadasComponent},
 ];
 
 @NgModule({
@@ -17,4 +23,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [InicioSesionComponent, RegistroComponent,LandingPageComponent]
+export const routingComponents = [InicioSesionComponent, RegistroComponent,LandingPageComponent,ContenedorOrdenesDisponiblesComponent]

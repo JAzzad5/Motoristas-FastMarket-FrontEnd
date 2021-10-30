@@ -1,1 +1,106 @@
-<p>contenedor-ordenes-entregadas works!</p>
+<div class="fast-market column">
+    <app-barra-superior style="flex: 1;"></app-barra-superior>
+
+    <div class="contenedor-vistas">
+        <div class="contenedor-productos">
+            <div class="area-productos">
+                <div class="titulo"> 
+                    <p>
+                        <fa-icon [routerLink]="['/inicio']" routerLinkActive="router-link-active"  [icon]="faArrowLeft" ></fa-icon>
+                        Órdenes Entregadas:
+                    </p>
+                </div>
+                <div class="productos row">
+                    <div (click)="verDetallesOrden(detallesOrden)" class="producto shadow">
+                        <div class="datos-producto">
+                            <div class="nombre"> 2 Whopper + 1 Producto(s) </div> 
+                            <div class="direccion">Res. Centroamerica</div>
+                            <div class="precio"> L. 205
+                            </div>
+                        </div>
+                        <img class="img-producto" src="../../../assets/images/bk.jpg" alt="Comercio">
+                    </div>
+                    <div (click)="verDetallesOrden(detallesOrden)" class="producto shadow">
+                        <div class="datos-producto">
+                            <div class="nombre">  2 Bacon Mushroom Melt  + 1 Producto(s) </div> 
+                            <div class="direccion">Res. Centroamerica</div>
+                            <div class="precio"> L. 258
+                            </div>
+                        </div>
+                        <img class="img-producto" src="../../../assets/images/Wendy_s-logo.jpg" alt="Comercio">
+                    </div>
+                    <div (click)="verDetallesOrden(detallesOrden)" class="producto shadow">
+                        <div class="datos-producto">
+                            <div class="nombre"> 2 Pizza Pepperoni </div> 
+                            <div class="direccion">Res. Centroamerica</div>
+                            <div class="precio"> L. 287
+                            </div>
+                        </div>
+                        <img class="img-producto" src="../../../assets/images/pizza.jpg" alt="Comercio">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<!-- Ventana modal de carrito de compras -->
+<ng-template #detallesOrden let-modal>
+    <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Detalles de la Orden</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="contenedor-carrito">
+            <div class="datos-orden">
+                <div class="datos-comercio">
+                    <img class="img-comercio-orden" src="../../../assets/images/bk.jpg" alt="">
+                    <div >
+                        <div class="dato">Nombre:
+                            <label class="info"> Burger King</label>
+                        </div>
+                        <div class="dato">Direccion :
+                            <label class="info"> Blvd Suyapa, frente a UNAH</label>
+                        </div> 
+                    </div>
+                </div>
+                <div class="datos-usuario">
+                    <div class="dato">Nombre Usuario:
+                        <label class="info">Jossue Azzad</label>
+                    </div>
+                    <div class="dato">Direccion Usuario:
+                        <label class="info">Res. Centroamerica</label>
+                    </div> 
+                    <div class="dato">Total a Pagar:
+                        <label class="info">L. 705</label>
+                    </div> 
+                </div>
+                <div class="productos-orden row">
+                    <div class="producto-orden shadow">
+                        <div class="datos-producto">
+                            <div class="nombre"> 2 Whopper</div> 
+                            <div class="precio"> L. 205
+                            </div>
+                        </div>
+                        <img class="img-producto-orden" src="../../../assets/images/productos/whopper.jpg" alt="Comercio">
+                    </div>
+                    <div class="producto-orden shadow">
+                        <div class="datos-producto">
+                            <div class="nombre"> 1 Bacon King </div>
+                            <div class="precio"> L. 260
+                            </div>
+                        </div>
+                        <img class="img-producto-orden" src="../../../assets/images/productos/Bacon_King_Sandwich_highres.jpg" alt="Comercio">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer container ">
+    <button type="button" class="btn btn-success col-12" (click)="modal.close('Save click')">Tomar Orden</button>
+    </div>
+</ng-template>

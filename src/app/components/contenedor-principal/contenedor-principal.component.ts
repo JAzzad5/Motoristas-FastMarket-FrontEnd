@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faArrowLeft, faStar, faClock, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-contenedor-principal',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contenedor-principal.component.css']
 })
 export class ContenedorPrincipalComponent implements OnInit {
-
+  faArrowLeft=faArrowLeft;
+  faStar=faStar;
+  faClock=faClock;
+  faMoneyBillAlt=faMoneyBillAlt;
   constructor() { }
 
   ngOnInit(): void {

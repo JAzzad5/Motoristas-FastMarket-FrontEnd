@@ -1,3 +1,36 @@
-<div class="fast-market">
+<div class="fast-market column">
     <app-barra-superior style="flex: 1;"></app-barra-superior>
+
+    <div class="contenedor-vistas">
+        <div class="contenedor-principal">
+            <div class="area-principal">
+                <div class="titulo"> 
+                    <p>
+                        Listados de Órdenes:
+                    </p>
+                </div>
+                <div class="opciones row">
+                    <div [routerLink]="['/ordenes-disponibles']" routerLinkActive="router-link-active"  class="opcion shadow">
+                        <img class="img-opcion" src="../../../assets/images/ordenes-disponibles.svg" alt="Restaurantes">
+                        <div class="datos-opcion">
+                            <div class="nombre"> Órdenes Disponibles</div>                          
+                        </div>
+                    </div>                    
+                    <div [routerLink]="['/ordenes-tomadas']" routerLinkActive="router-link-active" class="opcion shadow">
+                        <img class="img-opcion" src="../../../assets/images/landing.svg" alt="Restaurantes">
+                        <div class="datos-opcion">
+                            <div class="nombre"> Órdenes Tomadas</div>                          
+                        </div>
+                    </div>                    
+                    <div [routerLink]="['/ordenes-entregadas']" routerLinkActive="router-link-active" class="opcion shadow">
+                        <img class="img-opcion" src="../../../assets/images/ordenes-entregadas2.svg" alt="Restaurantes">
+                        <div class="datos-opcion">
+                            <div class="nombre"> Órdenes Entregadas</div>                          
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
