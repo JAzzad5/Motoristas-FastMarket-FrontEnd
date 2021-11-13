@@ -13,6 +13,10 @@ export class OrdenesService {
     return this.httpClient.get(`http://localhost:8888/ordenes/usuario/${IdUsuario}`,{});
   };
 
+  obtenerOrdenesMotorista(IdMotorista:any):Observable<any>{
+    return this.httpClient.get(`http://localhost:8888/ordenes/motorista/${IdMotorista}`,{});
+  };
+
   obtenerOrdenes():Observable<any>{
     return this.httpClient.get(`http://localhost:8888/ordenes/`,{});
   };

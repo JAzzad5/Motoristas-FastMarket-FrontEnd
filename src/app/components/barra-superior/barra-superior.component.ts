@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser, faMapMarkerAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { MotoristasService } from 'src/app/services/motoristas.service';
 
 @Component({
   selector: 'app-barra-superior',
@@ -10,9 +11,16 @@ export class BarraSuperiorComponent implements OnInit {
   faUser = faUser;
   faMapMarkerAlt = faMapMarkerAlt;
   faShoppingCart = faShoppingCart;
-  constructor() { }
+  Motorista:any = "";
+  constructor(private motoristaService:MotoristasService) { }
 
   ngOnInit(): void {
+    this.motoristaService.obtenerUnMotoritas('618d5741b0ed19c7872d5519').subscribe(
+      res=>{
+        this.Motorista = res;
+        console.log(this.Motorista)
+      }
+    );
   }
 
 }

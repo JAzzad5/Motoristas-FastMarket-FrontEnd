@@ -57,10 +57,13 @@
     margin-bottom: 0px;
 }
 
+.iterador{
+    width: 100%;
+}
 .producto{
     width: 100px;
-    min-height: 45%;
-    max-height: 100%;
+    min-height: 130px;
+    height: fit-content;
     display: flex;
     flex-direction: row;
     background-color: white;
@@ -71,6 +74,7 @@
     box-sizing:border-box;
     border-radius: 10px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .img-producto{
@@ -106,12 +110,16 @@
     font-weight: lighter;
 }
 
-.datos-producto .nombre {
+.datos-producto .dato {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     font-size: 15px;
+}
+.datos-producto label{
+    color: black;
+    margin-bottom: 0px;
+    margin-right: 10px;
 }
 
 .datos-producto .direccion {
@@ -120,11 +128,6 @@
     margin-bottom: 5px;
 }
 
-.datos-producto  .precio{
-    font-size: 20px;
-    font-weight: 300;
-    margin-top: -5px;
-}
 
 .productos-orden{
     display: flex;
@@ -196,18 +199,172 @@
     margin-right: 20px;
 }
 
+.datos-usuario{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.img-usuario{
+    width: 70px;
+    max-width: 70px;
+    height: 70px;
+    max-height: 70px;
+    object-fit: cover;
+    margin-right: 5px;
+    border-radius: 10px;
+    
+}
+.datos{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+
+}
+.datos label{
+    font-size: 15px;
+    color: gray;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+.datos .Nombre{
+    font-size: 18px;
+    color: #688E26;
+    font-weight: bold;
+}
+
+.titulo-orden{
+    color: rgb(63, 63, 63);
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: auto;
+    margin-left: 30px;
+    text-decoration: underline;
+}
+.contenedor-ubicacion{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.mapa{
+    background-color: white;
+    width: 95%;
+    height: 100%;
+    border-radius: 20px;
+}
+.modal-title{
+    color: #688E26;
+}
+
+.modal-footer{
+    justify-content:center;
+    width: 100%!important;
+}
+.totales{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #688E26;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.totales .form-label{
+    color: #FAA613;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.totales p{
+    color: #688E26;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.subtotales{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.total{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+.datos-productos p{
+    margin-left: 5px;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+
+.datos-productos .nombre-producto{
+    font-size: 15px;
+    margin-left: 15px;
+    flex: 1;
+
+}
+
+.datos-productos  .precio{
+    font-size: 17px;
+    font-weight: bold;
+    margin-left: 20px;
+    min-width: 50px;
+}
+.datos-productos  .comercio{
+    font-size: 20px;
+    font-weight: bold;
+    color: #FAA613;
+}
+
+.datos-productos .direccion{
+    font-size: 12px;
+}
+
+.datos-productos .sub-contenedor{
+    display: flex;
+    align-items: center;
+}
+
+.cantidad {
+    color: #FAA613;
+}
+
+.iterador{
+    width: 100%;
+}
+
+
 .estado-p{
     color: #dc3545;
+    border-color: #dc3545;
     display: flex;
     align-items: center;
 }
 .estado-c{
     color: #ffc107;
+    border-color: #ffc107;
     display: flex;
     align-items: center;
 }
 .estado-e{
     color: #28a745;
+    border-color: #28a745;
     display: flex;
     align-items: center;
 }
@@ -217,16 +374,18 @@
     margin-right: 5px;
 }
 
-.btn-outline-primary{
-    color: #FAA613;
-    border-color: #FAA613;
+.estado{
+    width: 100%;
+    height: 40px;
 }
 
+.estado option:{
+    background-color: #E1FFAE;
+}
 
-.btn-outline-primary:focus{
-    color:white;
-    background-color: #FAA613!important;
-    border-color: #FAA613!important;
+.dropdown-menu.show {
+    display: block;
+    width: 100%;
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle{

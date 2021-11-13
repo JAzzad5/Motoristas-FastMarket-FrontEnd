@@ -11,35 +11,17 @@
                     </p>
                 </div>
                 <div class="productos row">
-                    <div (click)="verDetallesOrden(detallesOrden)" class="producto shadow">
-                        <div class="datos-producto">
-                            <div class="estado-p"> <fa-icon [icon]="faCircle"></fa-icon> Pendiente</div>
-                            <div class="nombre"> 2 Whopper + 1 Producto(s) </div> 
-                            <div class="direccion">Res. Centroamerica</div>
-                            <div class="precio"> L. 205
+                    <div *ngFor="let orden of ordenes" class="iterador">
+                        <div class="producto shadow" (click)="verDetallesOrden(Orden, orden._id)">
+                            <div class="datos-producto">
+                                <div [ngClass]="{'estado-p': orden.estado == 'Pendiente', 'estado-c': orden.estado == 'En Camino','estado-e': orden.estado == 'Entregado'}" class="dato"> <label >  Estado:</label>  <fa-icon [icon]="faCircle"></fa-icon> {{orden.estado}}</div>
+                                <div class="dato"> <label >Usuario:</label>  {{orden.usuario[0].NombreUsuario}}</div>
+                                <div class="direccion"><label> Direccion:</label>{{orden.usuario[0].Ubicacion.NombreUbicacion}}</div>
+                                <div class="dato"><label> Comercio:</label> {{orden.productos[0]._id[0].Comercio[0].NombreComercio}} </div> 
+                                <div class="dato"><label> Orden:</label>{{orden.productos.length}} Productos </div> 
                             </div>
+                            <img class="img-producto" src="../../../assets/images/{{orden.productos[0]._id[0].Comercio[0].ImagenComercio}} " alt="Comercio">
                         </div>
-                        <img class="img-producto" src="../../../assets/images/bk.jpg" alt="Comercio">
-                    </div>
-                    <div (click)="verDetallesOrden(detallesOrden)" class="producto shadow">
-                        <div class="datos-producto">
-                            <div class="estado-c"> <fa-icon [icon]="faCircle"></fa-icon> En Camino</div>
-                            <div class="nombre">  2 Bacon Mushroom Melt  + 1 Producto(s) </div> 
-                            <div class="direccion">Res. Centroamerica</div>
-                            <div class="precio"> L. 258
-                            </div>
-                        </div>
-                        <img class="img-producto" src="../../../assets/images/Wendy_s-logo.jpg" alt="Comercio">
-                    </div>
-                    <div (click)="verDetallesOrden(detallesOrden)" class="producto shadow">
-                        <div class="datos-producto">
-                            <div class="estado-e"> <fa-icon [icon]="faCircle"></fa-icon> Entregada </div>
-                            <div class="nombre"> 2 Pizza Pepperoni </div> 
-                            <div class="direccion">Res. Centroamerica</div>
-                            <div class="precio"> L. 287
-                            </div>
-                        </div>
-                        <img class="img-producto" src="../../../assets/images/pizza.jpg" alt="Comercio">
                     </div>
                 </div>
             </div>
@@ -48,71 +30,65 @@
     
 </div>
 
-
 <!-- Ventana modal de carrito de compras -->
-<ng-template #detallesOrden let-modal>
+<ng-template #Orden let-modal>
     <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Órdenes Tomadas:</h4>
+    <h4 class="modal-title" id="modal-basic-title">Detalle de la Orden</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
     </div>
     <div class="modal-body">
-        <div class="contenedor-carrito">
-            <div class="datos-orden">
-                <div class="datos-comercio">
-                    <img class="img-comercio-orden" src="../../../assets/images/bk.jpg" alt="">
-                    <div >
-                        <div class="dato">Nombre:
-                            <label class="info"> Burger King</label>
-                        </div>
-                        <div class="dato">Direccion :
-                            <label class="info"> Blvd Suyapa, frente a UNAH</label>
-                        </div> 
-                    </div>
+        <div class="contenedor-orden">
+            <div class="titulo-orden"> Usuario: </div>
+            <div class=" shadow-sm datos-usuario">
+                <img class="img-usuario" src="../../../assets/images/fotos perfil/{{OrdenPendiente[0].usuario[0].ImagenUsuario}}">
+                <div class="datos">
+                    
+                <label class="Nombre">{{OrdenPendiente[0].usuario[0].NombreUsuario}}</label>
+                <label >{{OrdenPendiente[0].usuario[0].Ubicacion.NombreUbicacion}}</label>
+                <label >{{OrdenPendiente[0].usuario[0].Telefono}}</label>
                 </div>
-                <div class="datos-usuario">
-                    <div class="dato">Nombre Usuario:
-                        <label class="info">Jossue Azzad</label>
+            </div>
+
+            <div class="titulo-orden"> Ubicación del Usuario: </div>
+            <div class="contenedor-ubicacion">
+                <div id="mapa" class="mapa shadow"></div>
+            </div>
+            <div class="titulo-orden"> Productos de la Orden: </div>
+            <div class="producto shadow" *ngFor="let producto of OrdenPendiente[0].productos">
+                <img class="img-producto" src="../../../assets/images/productos/{{producto._id[0].ImagenProducto}}" alt="Restaurantes">
+                <div class="datos-productos">
+                    <div class="comercio"> {{producto._id[0].Comercio[0].NombreComercio}}</div>
+                    <div class="sub-contenedor">
+                        <div class="cantidad rounded rounded-circle" >{{producto.cantidad}}</div>
+                        <div class="nombre-producto"> {{producto._id[0].NombreProducto}}</div>
+                        <div class="precio"> L. {{producto._id[0].Precio}}</div>
                     </div>
-                    <div class="dato">Direccion Usuario:
-                        <label class="info">Res. Centroamerica</label>
-                    </div> 
-                    <div class="dato">Total a Pagar:
-                        <label class="info">L. 705</label>
-                    </div>
-                    <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Estado de la Orden</button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button class="estado-p bold" ngbDropdownItem>Pendiente</button>
-                            <button class="estado-c bold" ngbDropdownItem>En Camino</button>
-                            <button class="estado-e bold" ngbDropdownItem>Entregada</button>
-                        </div>
-                    </div>
+                    
                 </div>
                 
-                <div class="productos-orden row">
-                    <div class="producto-orden shadow">
-                        <div class="datos-producto">
-                            <div class="nombre"> 2 Whopper</div> 
-                            <div class="precio"> L. 205
-                            </div>
-                        </div>
-                        <img class="img-producto-orden" src="../../../assets/images/productos/whopper.jpg" alt="Comercio">
-                    </div>
-                    <div class="producto-orden shadow">
-                        <div class="datos-producto">
-                            <div class="nombre"> 1 Bacon King </div>
-                            <div class="precio"> L. 260
-                            </div>
-                        </div>
-                        <img class="img-producto-orden" src="../../../assets/images/productos/Bacon_King_Sandwich_highres.jpg" alt="Comercio">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer container ">
-    <button type="button" class="btn btn-success col-12" (click)="modal.close('Save click')">Tomar Orden</button>
+        <select (change)="onChange($event.target)" [ngClass]="{'estado-p': OrdenPendiente[0].estado == 'Pendiente', 'estado-c': OrdenPendiente[0].estado == 'En Camino','estado-e': OrdenPendiente[0].estado == 'Entregado'}"  class="estado form-select" >
+            <option [selected]="OrdenPendiente[0].estado == 'Pendiente'" class="estado-p bold" value="Pendiente">Pendiente</option>
+            <option [selected]="OrdenPendiente[0].estado == 'En Camino'" class="estado-c bold" value="En Camino">En Camino</option>
+            <option [selected]="OrdenPendiente[0].estado == 'Entregado'" class="estado-e bold" value="Entregado">Entregado</option>
+        </select>
+        <div class="totales row ">
+            <div class="subtotales col-6">
+                <div class="form-label">Subtotal:</div>
+                <p>L. {{subtotal}} </p>
+                <div class="form-label">Costo de Envío:</div>
+                <p>L.{{OrdenPendiente[0].productos[0]._id[0].Comercio[0].CostoEnvio}} </p>
+            </div>
+            <div class="total col-6">
+                <div class="form-label">Total Pagar:</div>
+                <p>L. {{OrdenPendiente[0].productos[0]._id[0].Comercio[0].CostoEnvio + subtotal}} </p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success col-12" (click)="modal.close('Save click');">Cerrar</button>
     </div>
 </ng-template>

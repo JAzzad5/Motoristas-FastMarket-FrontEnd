@@ -3,14 +3,16 @@
     
     <div class="estado">
         <p>Estado:</p>
-        <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+        <div *ngIf="Motorista != ''" class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1"  [checked]="Motorista[0].Estado== 'Activo'">
             <label class="custom-control-label" for="customSwitch1"></label>
         </div>
     </div>    
 </div>
-<div class="bienvenida">
-    <p>Hola, Enrique Martinez</p>
-    <p>#EMartinez </p>
-    <p>Numero de Placa: MAE1234</p>
+<div *ngIf="Motorista != ''" class="bienvenida">
+    <img class="rounded rounded-circle" src="../../../assets/images/fotos perfil/{{Motorista[0].ImagenMotorista}}" alt="">
+    <div class="datos">
+        <p>Hola, {{Motorista[0].Nombre}}</p>
+        <p>Numero de Placa: {{Motorista[0].Placa}}</p>
+    </div>
 </div>
