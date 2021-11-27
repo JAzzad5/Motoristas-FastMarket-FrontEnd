@@ -15,12 +15,12 @@
                         <div class="producto shadow" (click)="verDetallesOrden(Orden, orden._id)">
                             <div class="datos-producto">
                                 <div [ngClass]="{'estado-p': orden.estado == 'Pendiente', 'estado-c': orden.estado == 'En Camino','estado-e': orden.estado == 'Entregado'}" class="dato"> <label >  Estado:</label>  <fa-icon [icon]="faCircle"></fa-icon> {{orden.estado}}</div>
-                                <div class="dato"> <label >Usuario:</label>  {{orden.usuario[0].NombreUsuario}}</div>
-                                <div class="direccion"><label> Direccion:</label>{{orden.usuario[0].Ubicacion.NombreUbicacion}}</div>
-                                <div class="dato"><label> Comercio:</label> {{orden.productos[0]._id[0].Comercio[0].NombreComercio}} </div> 
+                                <div class="dato"> <label >Usuario:</label>  {{orden.usuario.NombreUsuario}}</div>
+                                <div class="direccion"><label> Direccion:</label>{{orden.usuario.Ubicacion.NombreUbicacion}}</div>
+                                <div class="dato"><label> Comercio:</label> {{orden.productos[0]._id.Comercio[0].NombreComercio}} </div> 
                                 <div class="dato"><label> Orden:</label>{{orden.productos.length}} Productos </div> 
                             </div>
-                            <img class="img-producto" src="../../../assets/images/{{orden.productos[0]._id[0].Comercio[0].ImagenComercio}} " alt="Comercio">
+                            <img class="img-producto" src="../../../assets/images/{{orden.productos[0]._id.Comercio[0].ImagenComercio}} " alt="Comercio">
                         </div>
                     </div>
                 </div>
@@ -42,12 +42,12 @@
         <div class="contenedor-orden">
             <div class="titulo-orden"> Usuario: </div>
             <div class=" shadow-sm datos-usuario">
-                <img class="img-usuario" src="../../../assets/images/fotos perfil/{{OrdenPendiente[0].usuario[0].ImagenUsuario}}">
+                <img class="img-usuario" src="../../../assets/images/fotos perfil/{{OrdenPendiente[0].usuario.ImagenUsuario}}">
                 <div class="datos">
                     
-                <label class="Nombre">{{OrdenPendiente[0].usuario[0].NombreUsuario}}</label>
-                <label >{{OrdenPendiente[0].usuario[0].Ubicacion.NombreUbicacion}}</label>
-                <label >{{OrdenPendiente[0].usuario[0].Telefono}}</label>
+                <label class="Nombre">{{OrdenPendiente[0].usuario.NombreUsuario}}</label>
+                <label >{{OrdenPendiente[0].usuario.Ubicacion.NombreUbicacion}}</label>
+                <label >{{OrdenPendiente[0].usuario.Telefono}}</label>
                 </div>
             </div>
 
@@ -57,13 +57,13 @@
             </div>
             <div class="titulo-orden"> Productos de la Orden: </div>
             <div class="producto shadow" *ngFor="let producto of OrdenPendiente[0].productos">
-                <img class="img-producto" src="../../../assets/images/productos/{{producto._id[0].ImagenProducto}}" alt="Restaurantes">
+                <img class="img-producto" src="../../../assets/images/productos/{{producto._id.ImagenProducto}}" alt="Restaurantes">
                 <div class="datos-productos">
-                    <div class="comercio"> {{producto._id[0].Comercio[0].NombreComercio}}</div>
+                    <div class="comercio"> {{producto._id.Comercio[0].NombreComercio}}</div>
                     <div class="sub-contenedor">
-                        <div class="cantidad rounded rounded-circle" >{{producto.cantidad}}</div>
-                        <div class="nombre-producto"> {{producto._id[0].NombreProducto}}</div>
-                        <div class="precio"> L. {{producto._id[0].Precio}}</div>
+                        <div class="cantidad rounded rounded-circle" >{{producto.Cantidad}}</div>
+                        <div class="nombre-producto"> {{producto._id.NombreProducto}}</div>
+                        <div class="precio"> L. {{producto._id.Precio}}</div>
                     </div>
                     
                 </div>
@@ -72,21 +72,21 @@
         </div>
     </div>
     <div class="modal-footer container ">
-        <select (change)="onChange($event.target)" [ngClass]="{'estado-p': OrdenPendiente[0].estado == 'Pendiente', 'estado-c': OrdenPendiente[0].estado == 'En Camino','estado-e': OrdenPendiente[0].estado == 'Entregado'}"  class="estado form-select" >
-            <option [selected]="OrdenPendiente[0].estado == 'Pendiente'" class="estado-p bold" value="Pendiente">Pendiente</option>
-            <option [selected]="OrdenPendiente[0].estado == 'En Camino'" class="estado-c bold" value="En Camino">En Camino</option>
-            <option [selected]="OrdenPendiente[0].estado == 'Entregado'" class="estado-e bold" value="Entregado">Entregado</option>
+        <select (change)="onChange($event.target)" [ngClass]="{'estado-p': estado == 'Pendiente', 'estado-c': estado == 'En Camino','estado-e': estado == 'Entregado'}"  class="estado form-select" >
+            <option [selected]="estado == 'Pendiente'" class="estado-p bold" value="Pendiente">Pendiente</option>
+            <option [selected]="estado == 'En Camino'" class="estado-c bold" value="En Camino">En Camino</option>
+            <option [selected]="estado == 'Entregado'" class="estado-e bold" value="Entregado">Entregado</option>
         </select>
         <div class="totales row ">
             <div class="subtotales col-6">
                 <div class="form-label">Subtotal:</div>
                 <p>L. {{subtotal}} </p>
                 <div class="form-label">Costo de Envío:</div>
-                <p>L.{{OrdenPendiente[0].productos[0]._id[0].Comercio[0].CostoEnvio}} </p>
+                <p>L.{{OrdenPendiente[0].productos[0]._id.Comercio[0].CostoEnvio}} </p>
             </div>
             <div class="total col-6">
                 <div class="form-label">Total Pagar:</div>
-                <p>L. {{OrdenPendiente[0].productos[0]._id[0].Comercio[0].CostoEnvio + subtotal}} </p>
+                <p>L. {{OrdenPendiente[0].productos[0]._id.Comercio[0].CostoEnvio + subtotal}} </p>
             </div>
         </div>
         <button type="button" class="btn btn-success col-12" (click)="modal.close('Save click');">Cerrar</button>

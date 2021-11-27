@@ -23,15 +23,18 @@ export class ContenedorOrdenesEntregadasComponent implements OnInit {
   marker:any ="";
   lat:any;
   lon:any;
+  User='61788bd5c3909eef1fa7f27b'
   constructor(private modalService:NgbModal,  private ordenesService: OrdenesService) { }
-  ordenes:any;
+  ordenes:any=[];
   OrdenPendiente:any = [];
   subtotal:any=0;
+  envio:any=0;
+  total:any=0;
   
   ngOnInit(): void {
 
     
-    this.ordenesService.obtenerOrdenesMotorista('618d5741b0ed19c7872d5519').subscribe(
+    this.ordenesService.obtenerOrdenesMotorista(this.User).subscribe(
       res=>{
         console.log(res);
         this.ordenes = res;
@@ -48,8 +51,8 @@ export class ContenedorOrdenesEntregadasComponent implements OnInit {
       res=>{
         this.OrdenPendiente = res;
         console.log(this.OrdenPendiente[0]);
-        this.lat = this.OrdenPendiente[0].usuario[0].Ubicacion.lat; 
-        this.lon = this.OrdenPendiente[0].usuario[0].Ubicacion.lon;
+        this.lat = this.OrdenPendiente[0].usuario.Ubicacion.lat; 
+        this.lon = this.OrdenPendiente[0].usuario.Ubicacion.lon;
         this.totalOrden();
 
         this.modalService.open(
@@ -60,7 +63,7 @@ export class ContenedorOrdenesEntregadasComponent implements OnInit {
           }
         );
         this.verMapa();
-        this.trazarRuta(this.OrdenPendiente[0].productos[0]._id[0].Comercio[0].Ubicacion.lat, this.OrdenPendiente[0].productos[0]._id[0].Comercio[0].Ubicacion.lon)
+        this.trazarRuta(this.OrdenPendiente[0].productos[0]._id.Comercio[0].Ubicacion.lat, this.OrdenPendiente[0].productos[0]._id.Comercio[0].Ubicacion.lon)
       },
       error=>{
         console.log(error);
@@ -69,14 +72,20 @@ export class ContenedorOrdenesEntregadasComponent implements OnInit {
 
   }
 
+
   totalOrden(){
     this.subtotal=0;
     let productos = this.OrdenPendiente[0].productos;
     productos.forEach((producto:any) => {
-      this.subtotal += producto.cantidad * producto._id[0].Precio;
       
-      console.log(this.subtotal);
+      console.log(producto);
+      this.envio = producto._id.Comercio[0].CostoEnvio;
+      this.subtotal += producto.Cantidad * producto._id.Precio;
     });
+    this.total = this.subtotal + this.envio
+    console.log(this.envio)
+    console.log(this.subtotal)
+    console.log(this.total)
   }
 
   verMapa(){

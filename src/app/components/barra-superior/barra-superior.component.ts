@@ -12,10 +12,12 @@ export class BarraSuperiorComponent implements OnInit {
   faMapMarkerAlt = faMapMarkerAlt;
   faShoppingCart = faShoppingCart;
   Motorista:any = "";
+  User='618d5741b0ed19c7872d5519';
+  
   constructor(private motoristaService:MotoristasService) { }
 
   ngOnInit(): void {
-    this.motoristaService.obtenerUnMotoritas('618d5741b0ed19c7872d5519').subscribe(
+    this.motoristaService.obtenerUnMotoritas(this.User).subscribe(
       res=>{
         this.Motorista = res;
         console.log(this.Motorista)

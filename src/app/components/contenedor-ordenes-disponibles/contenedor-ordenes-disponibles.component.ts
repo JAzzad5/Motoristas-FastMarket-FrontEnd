@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt, faEdit, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MotoristasService } from 'src/app/services/motoristas.service';
 import { OrdenesService } from 'src/app/services/ordenes.service';
 import { environment } from 'src/environments/environment';
 declare const L: any;
+declare const Swal: any;
 
 @Component({
   selector: 'app-contenedor-ordenes-disponibles',
@@ -21,22 +23,19 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
   marker:any ="";
   lat:any;
   lon:any;
-
-  constructor(private modalService:NgbModal, private ordenesService: OrdenesService) { }
+  User='61788bd5c3909eef1fa7f27b';
+  constructor(private modalService:NgbModal, private ordenesService: OrdenesService, private motoristasService:MotoristasService) { }
   ordenes:any;
   OrdenPendiente:any = [];
+  OrdenSeleccionada:any;
   subtotal:any=0;
+  envio:any=0;
+  total:any = 0;
+  Motorista:any;
   
   ngOnInit(): void {
-    this.ordenesService.obtenerOrdenes().subscribe(
-      res=>{
-        console.log(res);
-        this.ordenes = res;
-      },
-      error=>{
-        console.log(error);
-      }
-    );
+    this.cargarOrdenes();
+    this.obtenerMotorista();
   }
 
 
@@ -44,9 +43,10 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
     this.ordenesService.obtenerOrdenId(idOrden).subscribe(
       res=>{
         this.OrdenPendiente = res;
+        this.OrdenSeleccionada = res[0]._id;
         console.log(this.OrdenPendiente[0]);
-        this.lat = this.OrdenPendiente[0].usuario[0].Ubicacion.lat; 
-        this.lon = this.OrdenPendiente[0].usuario[0].Ubicacion.lon;
+        this.lat = this.OrdenPendiente[0].usuario.Ubicacion.lat; 
+        this.lon = this.OrdenPendiente[0].usuario.Ubicacion.lon;
         this.totalOrden();
 
         this.modalService.open(
@@ -57,7 +57,7 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
           }
         );
         this.verMapa();
-        this.trazarRuta(this.OrdenPendiente[0].productos[0]._id[0].Comercio[0].Ubicacion.lat, this.OrdenPendiente[0].productos[0]._id[0].Comercio[0].Ubicacion.lon)
+        this.trazarRuta(this.OrdenPendiente[0].productos[0]._id.Comercio[0].Ubicacion.lat, this.OrdenPendiente[0].productos[0]._id.Comercio[0].Ubicacion.lon)
       },
       error=>{
         console.log(error);
@@ -65,17 +65,40 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
     )
 
   }
+  cargarOrdenes(){
+    this.ordenesService.obtenerOrdenes().subscribe(
+      res=>{
+        console.log(res);
+        this.ordenes = res;
+      },
+      error=>{
+        console.log(error);
+      }
 
+    );
+  }
   totalOrden(){
     this.subtotal=0;
     let productos = this.OrdenPendiente[0].productos;
     productos.forEach((producto:any) => {
-      this.subtotal += producto.cantidad * producto._id[0].Precio;
       
-      console.log(this.subtotal);
+      console.log(producto);
+      this.envio = producto._id.Comercio[0].CostoEnvio;
+      this.subtotal += producto.Cantidad * producto._id.Precio;
     });
+    this.total = this.subtotal + this.envio
+    console.log(this.envio)
+    console.log(this.subtotal)
+    console.log(this.total)
   }
-
+  obtenerMotorista(){
+    this.motoristasService.obtenerUnMotoritas(this.User).subscribe(
+      res=>{
+        console.log(res);
+        this.Motorista = res;
+      }
+    );
+  }
   verMapa(){
 
         this.mymap = L.map('mapa').setView([this.lat, this.lon], this.zoom);
@@ -110,4 +133,47 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
     }).addTo(this.mymap);
   }
   
+  tomarOrder(){
+    console.log(this.Motorista[0].Observacion);
+    if(this.Motorista[0].Observacion == 'Disponible' ){
+      this.Disponible();
+        this.ordenesService.tomarOrden(this.OrdenSeleccionada, this.User).subscribe(
+          res=>{
+            console.log(res);
+            this.cargarOrdenes()
+          }
+        );
+
+        this.motoristasService.cambiarObservacion(this.User, 'Con Orden').subscribe(
+          res=>{
+            console.log(res);
+          }
+        );
+
+        
+    }
+    else{ 
+      this.NoDisponible();
+    }
+  }
+
+  NoDisponible(){
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: `Ya cuentas con una orden tomada`,
+      showConfirmButton: false,
+      timer: 2500,
+    });
+  }
+
+  Disponible(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: `Orden Tomada`,
+      showConfirmButton: false,
+      timer: 2500,
+    });
+  }
 }

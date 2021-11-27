@@ -60,7 +60,24 @@
 .iterador{
     width: 100%;
 }
+
 .producto{
+    width: 100px;
+    height: 140px;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    align-items: center;
+    box-sizing:border-box;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.productoOrden{
     width: 100px;
     height: 100px;
     display: flex;
