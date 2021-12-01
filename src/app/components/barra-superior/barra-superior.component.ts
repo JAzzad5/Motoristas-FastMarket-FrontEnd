@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser, faMapMarkerAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { MotoristasService } from 'src/app/services/motoristas.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-barra-superior',
@@ -12,15 +13,14 @@ export class BarraSuperiorComponent implements OnInit {
   faMapMarkerAlt = faMapMarkerAlt;
   faShoppingCart = faShoppingCart;
   Motorista:any = "";
-  User='618d5741b0ed19c7872d5519';
+  MotoristaC=this.cookieService.get('Motorista');
   
-  constructor(private motoristaService:MotoristasService) { }
+  constructor(private motoristaService:MotoristasService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    this.motoristaService.obtenerUnMotoritas(this.User).subscribe(
+    this.motoristaService.obtenerUnMotoritas(this.MotoristaC).subscribe(
       res=>{
         this.Motorista = res;
-        console.log(this.Motorista)
       }
     );
   }

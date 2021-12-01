@@ -17,6 +17,10 @@ export class MotoristasService {
     return this.httpClient.get(`http://localhost:8888/motoristas/${idMotorista}`,{});
   }
 
+  loginMotorista(Correo:any){
+    return this.httpClient.get(`http://localhost:8888/motoristas/${Correo}/login`,{});
+  }
+
   cambiarObservacion(idMotorista:any,Observacion:any):Observable<any>{
     return this.httpClient.put(`http://localhost:8888/motoristas/${idMotorista}/${Observacion}/cambiarObservacion`,{});
   };

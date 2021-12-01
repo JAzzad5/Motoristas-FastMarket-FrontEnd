@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MotoristasService } from 'src/app/services/motoristas.service';
 import { OrdenesService } from 'src/app/services/ordenes.service';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 declare const L: any;
 declare const Swal: any;
 
@@ -25,8 +26,8 @@ export class ContenedorOrdenesTomadasComponent implements OnInit {
   marker:any ="";
   lat:any;
   lon:any;
-  User='61788bd5c3909eef1fa7f27b';
-  constructor(private modalService:NgbModal,  private ordenesService: OrdenesService, private motoristasService:MotoristasService) { }
+  Motorista=this.cookieService.get('Motorista');
+  constructor(private modalService:NgbModal,  private ordenesService: OrdenesService, private motoristasService:MotoristasService, private cookieService: CookieService) { }
   ordenes:any;
   OrdenPendiente:any = [];
   subtotal:any=0;
@@ -69,7 +70,7 @@ export class ContenedorOrdenesTomadasComponent implements OnInit {
   }
 
   cargarOrdenes(){
-    this.ordenesService.obtenerOrdenesMotorista(this.User).subscribe(
+    this.ordenesService.obtenerOrdenesMotorista(this.Motorista).subscribe(
       res=>{
         console.log(res);
         this.ordenes = res;
@@ -154,14 +155,14 @@ cambiarEstado(estado:any){
         );
         
         if(this.estado == 'Entregado'){
-          this.motoristasService.cambiarObservacion(this.User,'Disponible').subscribe(
+          this.motoristasService.cambiarObservacion(this.Motorista,'Disponible').subscribe(
             res=>{
               console.log(res);
             }
           );
         }
         else{
-          this.motoristasService.cambiarObservacion(this.User, 'Con Orden').subscribe(
+          this.motoristasService.cambiarObservacion(this.Motorista, 'Con Orden').subscribe(
             resp=>{
               console.log(resp);
             }

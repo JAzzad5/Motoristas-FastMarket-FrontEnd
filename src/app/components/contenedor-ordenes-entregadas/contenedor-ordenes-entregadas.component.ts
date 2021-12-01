@@ -4,6 +4,7 @@ import { faTrashAlt, faEdit, faUserPlus } from '@fortawesome/free-solid-svg-icon
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrdenesService } from 'src/app/services/ordenes.service';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 declare const L: any;
 
 @Component({
@@ -23,8 +24,8 @@ export class ContenedorOrdenesEntregadasComponent implements OnInit {
   marker:any ="";
   lat:any;
   lon:any;
-  User='61788bd5c3909eef1fa7f27b'
-  constructor(private modalService:NgbModal,  private ordenesService: OrdenesService) { }
+  Motorista=this.cookieService.get('Motorista');
+  constructor(private modalService:NgbModal,  private ordenesService: OrdenesService, private cookieService: CookieService) { }
   ordenes:any=[];
   OrdenPendiente:any = [];
   subtotal:any=0;
@@ -34,7 +35,7 @@ export class ContenedorOrdenesEntregadasComponent implements OnInit {
   ngOnInit(): void {
 
     
-    this.ordenesService.obtenerOrdenesMotorista(this.User).subscribe(
+    this.ordenesService.obtenerOrdenesMotorista(this.Motorista).subscribe(
       res=>{
         console.log(res);
         this.ordenes = res;

@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MotoristasService } from 'src/app/services/motoristas.service';
 import { OrdenesService } from 'src/app/services/ordenes.service';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 declare const L: any;
 declare const Swal: any;
 
@@ -23,8 +24,8 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
   marker:any ="";
   lat:any;
   lon:any;
-  User='61788bd5c3909eef1fa7f27b';
-  constructor(private modalService:NgbModal, private ordenesService: OrdenesService, private motoristasService:MotoristasService) { }
+  MotoristaC='';
+  constructor(private modalService:NgbModal, private ordenesService: OrdenesService, private motoristasService:MotoristasService, private cookieService: CookieService) { }
   ordenes:any;
   OrdenPendiente:any = [];
   OrdenSeleccionada:any;
@@ -92,7 +93,7 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
     console.log(this.total)
   }
   obtenerMotorista(){
-    this.motoristasService.obtenerUnMotoritas(this.User).subscribe(
+    this.motoristasService.obtenerUnMotoritas(this.MotoristaC).subscribe(
       res=>{
         console.log(res);
         this.Motorista = res;
@@ -137,14 +138,14 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
     console.log(this.Motorista[0].Observacion);
     if(this.Motorista[0].Observacion == 'Disponible' ){
       this.Disponible();
-        this.ordenesService.tomarOrden(this.OrdenSeleccionada, this.User).subscribe(
+        this.ordenesService.tomarOrden(this.OrdenSeleccionada, this.MotoristaC).subscribe(
           res=>{
             console.log(res);
             this.cargarOrdenes()
           }
         );
 
-        this.motoristasService.cambiarObservacion(this.User, 'Con Orden').subscribe(
+        this.motoristasService.cambiarObservacion(this.MotoristaC, 'Con Orden').subscribe(
           res=>{
             console.log(res);
           }
