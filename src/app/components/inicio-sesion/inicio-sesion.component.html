@@ -5,11 +5,11 @@
     <form [formGroup]="formularioLogin" class="formulario" action="">
         <div class="correo">
             <p class="form-label">Correo:</p>
-            <input formControlName="Correo" class="form-control" placeholder="usuario@correo.com" type="email" name="" id="">
+            <input formControlName="Correo" class="form-control" placeholder="usuario@correo.com" type="email">
         </div>
         <div class="contraseña">
             <p class="form-label" >Contraseña:</p>
-            <input formControlName="Contraseña" class="form-control" placeholder="contraseña" type="password" name="" id="">
+            <input formControlName="Contraseña" class="form-control" placeholder="contraseña" type="password">
         </div>
         <button [disabled]="!formularioLogin.valid" (click)="iniciarSesion()" routerLinkActive="router-link-active"  type="button" class="btn btn-success"> Iniciar Session </button>
         <div class="acciones">
