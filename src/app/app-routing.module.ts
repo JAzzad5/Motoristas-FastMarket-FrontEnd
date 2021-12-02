@@ -7,6 +7,7 @@ import { ContenedorPrincipalComponent } from './components/contenedor-principal/
 import { ContenedorOrdenesDisponiblesComponent } from './components/contenedor-ordenes-disponibles/contenedor-ordenes-disponibles.component';
 import { ContenedorOrdenesEntregadasComponent } from './components/contenedor-ordenes-entregadas/contenedor-ordenes-entregadas.component';
 import { ContenedorOrdenesTomadasComponent } from './components/contenedor-ordenes-tomadas/contenedor-ordenes-tomadas.component';
+import { PerfilMotoristaComponent } from './components/perfil-motorista/perfil-motorista.component';
 
 const routes: Routes = [
   {path:'inicio-sesion', component: InicioSesionComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'ordenes-disponibles', component:ContenedorOrdenesDisponiblesComponent},
   {path: 'ordenes-entregadas', component:ContenedorOrdenesEntregadasComponent},
   {path: 'ordenes-tomadas', component:ContenedorOrdenesTomadasComponent},
+  {path: 'perfil', component:PerfilMotoristaComponent},
 ];
 
 @NgModule({

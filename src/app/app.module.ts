@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { PerfilMotoristaComponent } from './components/perfil-motorista/perfil-motorista.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     ContenedorOrdenesEntregadasComponent,
     RegistroComponent,
     InicioSesionComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    PerfilMotoristaComponent
   ],
   imports: [
     BrowserModule,

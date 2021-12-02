@@ -1,0 +1,32 @@
+<div class="contenedor-perfil">
+    <div class="titulo">
+        <fa-icon [routerLink]="['/inicio']" routerLinkActive="router-link-active"  [icon]="faArrowLeft" ></fa-icon>
+        Mi Perfil
+    </div>
+    <div class="datos-principales">
+        <img *ngIf="Motorista.ImagenMotorista != undefined" class="rounded rounded-circle" src="../../../assets/images/fotos perfil/{{Motorista.ImagenMotorista}}" alt="">
+        <div class="datos">
+            <div class="nombre-completo">{{Motorista.Nombre}}</div>
+            <div class="numero"> {{Motorista.Telefono}}</div>
+            <div class="correo">{{Motorista.Correo}}</div>
+            <button (click)="editarMotorista()" class="btn btn-editar mt-3" [disabled]="(btnEditar || !formularioMotorista.valid)" >Editar</button>
+        </div>
+    </div>
+    <div class="datos-generales">
+        <p >Mis Datos:</p>
+        <form [formGroup]="formularioMotorista">
+            Foto de Perfil: <div class="input-group mb-3">
+                                <input type="file" formControlName="ImagenMotorista" class="form-control" id="foto">
+                            </div>
+            Nombre Completo:  <input formControlName="NombreMotorista" class="form-control mb-1" placeholder="Nombre Motorista" type="text">
+            Correo:<input formControlName="Correo" class="form-control mb-1" placeholder="Correo" type="email">
+            Teléfono:<input  formControlName="Telefono" class="form-control mb-1" placeholder="Número de teléfono" type="tel">
+            Placa:<input  formControlName="Placa" class="form-control mb-1" placeholder="Número de Placa" type="text">
+        </form>
+        </div>
+    <div class="ajustes">
+        <p >Acciones:</p>
+        <button class="btn btn-contraseña">Cambiar Contraseña</button>
+        <button (click)="cerrarSesion();" routerLinkActive="router-link-active"  class="btn btn-danger">Cerrar Sesión</button>
+    </div>
+</div>

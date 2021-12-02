@@ -1,0 +1,104 @@
+.contenedor-perfil{
+    background-color: #f4f4f4;
+    width: 100%;
+    min-height: 100vh;
+    height: fit-content;
+    padding: 20px;
+
+}
+
+.titulo{
+    color: #FAA613;
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.datos-principales{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.datos-principales img{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.datos{
+    flex:1;
+    margin-left: 20px;
+    color: #688E26;
+}
+
+.datos .nombre-completo{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.datos .numero, .correo{
+    font-size: 12px;
+    font-weight: bold;
+}
+.datos-generales, .ajustes{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #688E26;
+    font-weight: 500;
+}
+
+.ajustes{
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.datos-generales p, .ajustes p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #FAA613;
+}
+
+.form-label{
+    margin-bottom: 10px;
+}
+
+.btn{
+    margin-bottom: 10px;
+}
+
+.btn-editar{
+    background-color: #FAA613;
+    color: white;
+    border-radius: 10px;
+    width: 80%;
+    padding: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.btn-ubicacion, .btn-contraseña{
+    margin-top: 5px;
+    border-color: #688E26;
+    color: #688E26;
+}
+
+.btn-tarjeta{
+    margin-top: 10px;
+    border-color: #FAA613;
+    color: #FAA613;
+}
+
+.form-label{
+    margin-bottom: 10px;
+}
