@@ -24,7 +24,7 @@ export class ContenedorOrdenesDisponiblesComponent implements OnInit {
   marker:any ="";
   lat:any;
   lon:any;
-  MotoristaC='';
+  MotoristaC=this.cookieService.get('Motorista');
   constructor(private modalService:NgbModal, private ordenesService: OrdenesService, private motoristasService:MotoristasService, private cookieService: CookieService) { }
   ordenes:any;
   OrdenPendiente:any = [];
